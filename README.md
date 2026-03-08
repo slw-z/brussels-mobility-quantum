@@ -396,7 +396,7 @@ This project is available for portfolio demonstration purposes. Brussels Open Da
 
 - **Brussels Mobility** - Open Data initiative
 - **STIB-MIVB** - Real-time public transport data
-- **Villo** - Bike-sharing data API
+- **Villo!** - Bike-sharing data API
 - **OpenWeatherMap** - Weather data API
 
 ---
