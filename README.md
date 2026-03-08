@@ -563,9 +563,9 @@ Specialized in quantum-classical hybrid systems, real-time data pipelines, and a
 
 **Skills:** Quantum Computing (Cirq), SSIS, SQL Server, Power BI, Python, Machine Learning, 3D Visualization, Real-Time APIs
 
-**LinkedIn:** https:www.linkedin.com/in/salwa-zaaraoui  
-**Email:** zaaraoui.salwa@live.fr 
-**Location:** Brussels, Belgium  
+**LinkedIn:** https://www.linkedin.com/in/salwa-zaaraoui
+**Email:** zaaraoui.salwa@live.fr
+**Location:** Brussels, Belgium 
 **GitHub:** https://github.com/slw-z
 
 💼 Open to positions in:
