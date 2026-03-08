@@ -383,8 +383,11 @@ Passionate about transforming raw data into actionable insights. Specialized in 
 
 - **LinkedIn:** https://www.linkedin.com/in/salwa-zaaraoui
 - **Email:** zaaraoui.salwa@live.fr
-
+- **Location:** Brussels, Belgium
+- **GitHub:** https://github.com/slw-z
 ---
+
+💼 Open to Data Analyst / BI Developer opportunities in Brussels
 
 ## 📄 License
 
