@@ -568,10 +568,13 @@ Specialized in quantum-classical hybrid systems, real-time data pipelines, and a
 **Location:** Brussels, Belgium 
 **GitHub:** https://github.com/slw-z
 
+
 💼 Open to positions in:
 
-- Quantum Computing Research (IBM Quantum, Google Quantum AI)
-- Senior Data Engineer / Data Scientist
+- Data Engineer
+- Automation Engineer
+- Integration Specialist
+- BI Developer
 - Research Engineer (Quantum + ML)
 - Innovation Labs (Hybrid Computing)
 
