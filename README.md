@@ -143,7 +143,6 @@ circuit.append(cirq.measure(*qubits, key='result'))
 - Supports 360+ objects without lag
 
 ---
-
 ## 🏗️ Complete Technical Architecture
 
 ### Architecture Overview
@@ -153,8 +152,10 @@ This platform implements a full-stack data engineering solution combining classi
 **Data Flow:**
 ```
 Brussels Open Data APIs → SSIS ETL → SQL Server DW → Power BI + Python (Quantum)
+```
 
 ---
+
 ## 📸 Dashboard Screenshots
 
 ### Executive Dashboard - 3D Holographic Sablon Visualization
@@ -271,7 +272,6 @@ Brussels Open Data APIs → SSIS ETL → SQL Server DW → Power BI + Python (Qu
   • <code>CASE WHEN V.[Station] LIKE '021%' OR '1000%' THEN '1000'</code> - Dynamic postal code mapping for zone classification<br>
   Result: Single-row output for DE BROUCKERE with 14 available bikes and aggregated cultural venues.</em></p>
 </div>
-
 ---
 
 ## 💻 Tech Stack (Complete)
