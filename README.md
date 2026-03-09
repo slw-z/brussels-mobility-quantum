@@ -144,61 +144,133 @@ circuit.append(cirq.measure(*qubits, key='result'))
 
 ---
 
-## 🏗️ Complete Architecture
+## 🏗️ Complete Technical Architecture
 
+### Architecture Overview
+
+This platform implements a full-stack data engineering solution combining classical ETL pipelines with quantum computing algorithms for predictive analytics.
+
+**Data Flow:**
 ```
-┌──────────────────────────────────────────────────────────────┐
-│  DATA SOURCES (Brussels Open Data APIs - REAL-TIME)         │
-├──────────────────────────────────────────────────────────────┤
-│  • Villo Bike-Sharing    (360 stations, refresh: 1 min)     │
-│  • STIB Transport        (140+ stops, refresh: REAL-TIME)    │
-│  • Weather Brussels      (temp, rain, refresh: 30 min)       │
-│  • Cultural Events       (595 venues, refresh: 1 hour)       │
-└──────────────────────────────────────────────────────────────┘
-                            ↓
-┌──────────────────────────────────────────────────────────────┐
-│  ETL LAYER (SSIS + Script Components)                        │
-├──────────────────────────────────────────────────────────────┤
-│  • C# Script Components for JSON parsing                    │
-│  • Real-time API integration with retry logic               │
-│  • Data validation & Unicode handling                        │
-│  • SQL Server Agent jobs (automated scheduling)             │
-└──────────────────────────────────────────────────────────────┘
-                            ↓
-┌──────────────────────────────────────────────────────────────┐
-│  DATA WAREHOUSE (SQL Server)                                 │
-├──────────────────────────────────────────────────────────────┤
-│  • STG Layer: Raw API data (real-time ingestion)            │
-│  • DIM Layer: Quartiers, Lieux, Supports                    │
-│  • FACT Layer: Performance metrics by zone/day              │
-│  • Views: Geospatial joins + aggregations                   │
-└──────────────────────────────────────────────────────────────┘
-                            ↓
-┌──────────────────────────────────────────────────────────────┐
-│  DUAL ANALYTICS LAYER                                        │
-├──────────────────────────────────────────────────────────────┤
-│                                                              │
-│  CLASSICAL ML              │    QUANTUM COMPUTING            │
-│  ─────────────             │    ──────────────────           │
-│  • Prophet Forecasting     │    • Grover Search (Cirq)       │
-│  • Scikit-learn Clustering │    • Bloch Sphere Viz           │
-│  • Matplotlib Visuals      │    • Quantum Speedup            │
-│  • Time Series Analysis    │    • State Superposition        │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
-                            ↓
-┌──────────────────────────────────────────────────────────────┐
-│  POWER BI DASHBOARD (Hybrid Classical-Quantum)               │
-├──────────────────────────────────────────────────────────────┤
-│  • Page 1: Executive Summary (classical BI)                  │
-│  • Page 2: Performance Global (real-time KPIs)               │
-│  • Page 3: Territorial Analysis (3D holographic map)         │
-│  • Page 4: Predictive Engine (Prophet + Python)              │
-│  • Page 5: Smart Data (ML clustering + insights)             │
-│  • Page 6: Quantum Predictions (Grover + Bloch sphere)       │
-│  • Page 7: Recommendations (actionable insights)             │
-└──────────────────────────────────────────────────────────────┘
-```
+Brussels Open Data APIs → SSIS ETL → SQL Server DW → Power BI + Python (Quantum)
+
+---
+## 📸 Dashboard Screenshots
+
+### Executive Dashboard - 3D Holographic Sablon Visualization
+<div align="center">
+  <img src="images/01-dashboard-overview.png" alt="Dashboard Quantum Overview" width="800"/>
+  <p><em>Complete dashboard with 3D holographic map of Sablon district (JCDecaux HQ), real-time performance score (76/100), and predictive analytics integration with major brands (Tesla, Samsung, Coca-Cola, LVMH, BNP Paribas)</em></p>
+</div>
+
+---
+
+### Quantum Predictions - Grover Algorithm & Bloch Sphere
+<div align="center">
+  <img src="images/06.1-prédiction-quantique-abribus-digital.png" alt="Quantum Predictions with Bloch Sphere" width="800"/>
+  <p><em>Quantum Oracle implementation with Grover search algorithm and interactive Bloch sphere visualization showing quantum state evolution for optimal DOOH placement predictions (Coca-Cola campaign: 93% probability)</em></p>
+</div>
+
+---
+
+### Geographic Analysis - Brussels Urban Mobility Context
+<div align="center">
+  <img src="images/03-geographic-analysis.png" alt="Geographic Analysis Brussels" width="800"/>
+  <p><em>Interactive map contextualizing DOOH (Digital Out-Of-Home) advertising in Brussels mobility ecosystem with zone influence analysis, total impressions, occupation rates, and remaining capacity metrics</em></p>
+</div>
+
+---
+
+## 🔧 Technical Architecture Implementation
+
+### SSIS ETL Data Flow Pipelines
+
+**Real-Time API Ingestion Architecture**
+
+#### Villo Bike-Sharing API Ingestion
+<div align="center">
+  <img src="technical/01-dataflow-ingest-villo.png" alt="SSIS Villo Data Flow" width="700"/>
+  <p><em><strong>Component Script → OLE DB Destination</strong><br>
+  C# script component parsing Villo JSON API (341 stations) with real-time bike availability data. Inserts into STG_Live_Villo_Bruxelles staging table every 60 seconds.</em></p>
+</div>
+
+---
+
+#### STIB Public Transport API Ingestion
+<div align="center">
+  <img src="technical/02-dataflow-ingest-stib.png" alt="SSIS STIB Data Flow" width="700"/>
+  <p><em><strong>Script LIVE_STIB → DST LIVE_STIB</strong><br>
+  High-volume ingestion processing 2,475 vehicle positions per execution. Real-time STIB bus/metro/tram locations with GPS coordinates and line information updated every 20 seconds.</em></p>
+</div>
+
+---
+
+#### Weather Data API Ingestion
+<div align="center">
+  <img src="technical/03-dataflow-ingest-meteo.png" alt="SSIS Weather Data Flow" width="700"/>
+  <p><em><strong>Script LIVE_Météo → DST LIVE_Météo</strong><br>
+  Weather API integration (7 daily records) capturing temperature, rainfall, and conditions. Critical for mobility correlation analysis (rain days show -25% Villo usage).</em></p>
+</div>
+
+---
+
+### Power BI Data Model
+
+#### Star Schema Architecture
+<div align="center">
+  <img src="technical/01-modele-etoile-mobility-bxl.png" alt="Power BI Star Schema" width="700"/>
+  <p><em><strong>Kimball-Style Star Schema</strong><br>
+  Central <code>View_Fait_Diffusions</code> fact table connected to 7 dimension tables:<br>
+  • <strong>DIM:</strong> Creation, Campagne, Support, Salles_Spectacles, Météo<br>
+  • <strong>LIVE:</strong> STIB_station, Villo_Bruxelles (real-time feeds)<br>
+  • <strong>SPECIAL:</strong> Sphere_Data (quantum state storage)<br>
+  Enables high-performance DAX calculations with optimized relationships (1:many) and calculated measures.</em></p>
+</div>
+
+---
+
+### SQL Data Superposition Views
+
+**Advanced T-SQL for Multi-Source Data Integration**
+
+#### View 1: Basic Cross-Source Integration
+<div align="center">
+  <img src="technical/01-sql-superposition.png" alt="SQL Superposition Basic" width="700"/>
+  <p><em><strong>CROSS JOIN: Villo × STIB × Weather</strong><br>
+  Foundational view combining three live data sources. For each Villo station, associates nearest STIB stop and current weather conditions. Enables geospatial proximity analysis with <code>WHERE M.Date = CAST(GETDATE() AS DATE)</code> filtering for today's data only.</em></p>
+</div>
+
+---
+
+#### View 2: Fuzzy Matching with LIKE Operator
+<div align="center">
+  <img src="technical/02-sql-superposition.png" alt="SQL Fuzzy Matching" width="700"/>
+  <p><em><strong>INNER JOIN with LIKE '%' + Station + '%'</strong><br>
+  Advanced fuzzy matching technique to correlate Villo and STIB stations by name similarity. Example: "001 - LEOPOLD II" (Villo) matches "LEOPOLD I" (STIB) despite spelling variations. Critical for Belgian bilingual station names (FR/NL).</em></p>
+</div>
+
+---
+
+#### View 3: Complete Contextual Integration
+<div align="center">
+  <img src="technical/03-sql-superposition.png" alt="SQL Complete Integration" width="700"/>
+  <p><em><strong>Multi-Source Join: Villo + STIB + Weather + Cultural Venues</strong><br>
+  Final integrated view adding cultural venues data. Shows complete mobility context: bike availability (14 vélos), weather (Ensoleillé/Nuageux), and nearby event venues (Ancienne Belgique, Cirque Royal). Powers the geographic analysis dashboard page.</em></p>
+</div>
+
+---
+
+#### View 4: Advanced Aggregations & Business Logic
+<div align="center">
+  <img src="technical/04-sql-superposition.png" alt="SQL Advanced Aggregations" width="700"/>
+  <p><em><strong>Complex Query: MAX, AVG, STRING_AGG, CASE</strong><br>
+  Production-grade SQL demonstrating:<br>
+  • <code>MAX(M.[Temp Max])</code> - Peak temperature extraction via CROSS JOIN<br>
+  • <code>AVG(ISNULL(V.[vélos_disponibles], 0))</code> - Null-safe bike availability averaging<br>
+  • <code>STRING_AGG(ISNULL(Spec.[Nom de la salle], 'Pas de salle'), ' / ')</code> - Concatenates multiple venues per stop<br>
+  • <code>CASE WHEN V.[Station] LIKE '021%' OR '1000%' THEN '1000'</code> - Dynamic postal code mapping for zone classification<br>
+  Result: Single-row output for DE BROUCKERE with 14 available bikes and aggregated cultural venues.</em></p>
+</div>
 
 ---
 
